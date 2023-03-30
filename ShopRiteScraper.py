@@ -2,19 +2,26 @@
 # TODO 
 # Need to change the order of some of the code here, was running with Jupyter Noteb
 # Add a CLI to scrape a site for lowest price.
+# Make this more modular so that 
 
 ###ShopRite Scraper lol
 from bs4 import BeautifulSoup
 import requests
 from selenium import webdriver
-driver = webdriver.Chrome()
+from selenium.webdriver.chrome.options import Options
+
+
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+driver = webdriver.Chrome(options=chrome_options)
+
+site = r'https://www.shoprite.com/sm/pickup/rsid/3000/results?q=chicken%20breast'
 driver.get(site)
 shop_rite_html = driver.page_source
 print(shop_rite_html)
 
 
 
-site = r'https://www.shoprite.com/sm/pickup/rsid/3000/results?q=chicken%20breast'
 shop_rite_html = ""
 with open("shopritetemp.html", encoding='utf-8') as file:
     for line in file:
